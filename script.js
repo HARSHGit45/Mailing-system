@@ -41,7 +41,7 @@ document.getElementById('mailForm').addEventListener('submit', async (e) => {
     
     try {
         // Use the API endpoint for Vercel deployment
-        const response = await fetch('/api/send-certificates', {
+        const response = await fetch('https://mailing-system-ii7e.onrender.com/api/send-certificates', {
             method: 'POST',
             body: formData
         });

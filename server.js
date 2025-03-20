@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const upload = multer({ dest: '/tmp/' }); // Use /tmp for Vercel
+const upload = multer({ dest: '/tmp/' }); // Use /tmp for Render
 
 app.use(cors());
 app.use(express.json());
@@ -151,13 +151,10 @@ app.post('/api/send-certificates', upload.fields([
     }
 });
 
-// For local development
-if (process.env.NODE_ENV !== 'production') {
-    const PORT = 3000;
-    app.listen(PORT, () => {
-        console.log(`Server running on http://localhost:${PORT}`);
-    });
-}
+// Get the port from environment variable or use 3000
+const port = process.env.PORT || 3000;
 
-// For Vercel
-module.exports = app; 
+// Always listen on the port
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+}); 
